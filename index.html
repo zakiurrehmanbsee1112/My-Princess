@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Dr. Afifa Shahid ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+overflow:hidden;
+font-family:Poppins,sans-serif;
+background:#000;
+}
+
+#bg{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
+animation:zoom 30s infinite alternate;
+}
+
+@keyframes zoom{
+from{transform:scale(1);}
+to{transform:scale(1.15);}
+}
+
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(2px);
+}
+
+.content{
+
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+color:white;
+width:90%;
+
+}
+
+h1{
+
+font-size:65px;
+font-family:Cinzel,serif;
+text-shadow:0 0 25px #fff;
+
+animation:fade 3s;
+
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(80px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+p{
+
+margin-top:20px;
+font-size:22px;
+line-height:1.8;
+
+}
+
+button{
+
+margin-top:40px;
+
+padding:18px 45px;
+
+font-size:20px;
+
+border:none;
+
+border-radius:50px;
+
+background:linear-gradient(45deg,#ff2e63,#ff7eb3);
+
+color:white;
+
+cursor:pointer;
+
+transition:.4s;
+
+box-shadow:0 0 30px #ff4d6d;
+
+}
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:0 0 60px #ff4d6d;
+
+}
+
+.star{
+
+position:absolute;
+background:white;
+border-radius:50%;
+
+animation:twinkle 2s infinite alternate;
+
+}
+
+@keyframes twinkle{
+
+from{opacity:.2;}
+to{opacity:1;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="bg"></div>
+
+<div class="overlay"></div>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d6b2fca8c.mp3?filename=romantic-piano-110624.mp3">
+</audio>
+
+<div class="content">
+
+<h1>For My Princess ❤️</h1>
+
+<p>
+
+Dr. Afifa Shahid
+
+<br><br>
+
+Every star in this galaxy whispers one wish...
+
+May your smile never fade.
+
+</p>
+
+<button onclick="enterStory()">
+
+Begin The Journey ✨
+
+</button>
+
+</div>
+
+<script>
+
+for(let i=0;i<250;i++){
+
+const star=document.createElement("div");
+
+star.className="star";
+
+star.style.width=Math.random()*3+"px";
+star.style.height=star.style.width;
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.top=Math.random()*100+"vh";
+
+star.style.animationDelay=Math.random()*3+"s";
+
+document.body.appendChild(star);
+
+}
+
+function enterStory(){
+
+window.location="rose.html";
+
+}
+
+</script>
+
+</body>
+</html>
