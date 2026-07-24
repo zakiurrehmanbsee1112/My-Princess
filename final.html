@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Forever ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+overflow:hidden;
+height:100vh;
+font-family:Poppins,sans-serif;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:linear-gradient(-45deg,#000428,#004e92,#2b1055,#000);
+
+background-size:400% 400%;
+
+animation:bg 20s infinite alternate;
+
+}
+
+@keyframes bg{
+
+0%{background-position:0% 50%;}
+
+100%{background-position:100% 50%;}
+
+}
+
+canvas{
+
+position:absolute;
+inset:0;
+
+}
+
+.card{
+
+position:relative;
+
+z-index:10;
+
+width:90%;
+max-width:800px;
+
+padding:50px;
+
+border-radius:35px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(18px);
+
+box-shadow:0 0 50px rgba(255,255,255,.25);
+
+text-align:center;
+
+color:white;
+
+}
+
+h1{
+
+font-family:Cinzel;
+
+font-size:65px;
+
+margin-bottom:20px;
+
+text-shadow:0 0 25px #ffd700;
+
+animation:glow 2s infinite alternate;
+
+}
+
+@keyframes glow{
+
+from{
+
+text-shadow:0 0 15px white;
+
+}
+
+to{
+
+text-shadow:0 0 40px gold;
+
+}
+
+}
+
+#message{
+
+font-size:22px;
+
+line-height:1.9;
+
+min-height:220px;
+
+}
+
+.heart{
+
+position:absolute;
+
+font-size:25px;
+
+animation:fall linear infinite;
+
+}
+
+@keyframes fall{
+
+0%{
+
+transform:translateY(-100px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+.credit{
+
+margin-top:35px;
+
+font-size:18px;
+
+opacity:.8;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_8d6b2fca8c.mp3?filename=romantic-piano-110624.mp3">
+</audio>
+
+<div class="card">
+
+<h1>❤️ Forever ❤️</h1>
+
+<div id="message"></div>
+
+<div class="credit">
+
+Made with love 🌹
+
+</div>
+
+</div>
+
+<script>
+
+const text=
+
+`Dear Dr. Afifa Shahid,
+
+I hope this little journey brought a smile to your face.
+
+May every new day bring you happiness, peace, strength, and countless reasons to smile.
+
+Keep believing in yourself, keep shining, and never forget how valuable you are.
+
+Thank you for taking this journey.
+
+Wishing you all the best today and always. ❤️`;
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("message").innerHTML+=text.charAt(i);
+
+i++;
+
+setTimeout(type,40);
+
+}
+
+}
+
+type();
+
+setInterval(()=>{
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML=["❤️","💕","💖","🌹","✨"][Math.floor(Math.random()*5)];
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*30)+"px";
+
+h.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},9000);
+
+},180);
+
+const canvas=document.getElementById("fireworks");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=innerWidth;
+
+canvas.height=innerHeight;
+
+let particles=[];
+
+function createFirework(){
+
+let x=Math.random()*canvas.width;
+
+let y=Math.random()*canvas.height/2;
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x:x,
+
+y:y,
+
+dx:(Math.random()-.5)*8,
+
+dy:(Math.random()-.5)*8,
+
+life:100,
+
+color:`hsl(${Math.random()*360},100%,60%)`
+
+});
+
+}
+
+}
+
+setInterval(createFirework,900);
+
+function animate(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,index)=>{
+
+ctx.beginPath();
+
+ctx.arc(p.x,p.y,3,0,Math.PI*2);
+
+ctx.fillStyle=p.color;
+
+ctx.fill();
+
+p.x+=p.dx;
+
+p.y+=p.dy;
+
+p.dy+=0.05;
+
+p.life--;
+
+if(p.life<0){
+
+particles.splice(index,1);
+
+}
+
+});
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+window.onresize=()=>{
+
+canvas.width=innerWidth;
+
+canvas.height=innerHeight;
+
+};
+
+speechSynthesis.speak(
+
+new SpeechSynthesisUtterance(
+
+"Thank you for visiting this special journey. May your life always be filled with happiness and beautiful moments."
+
+)
+
+);
+
+</script>
+
+</body>
+
+</html>
