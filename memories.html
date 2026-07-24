@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Memory Book</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+overflow:hidden;
+
+background:url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center/cover;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+body::before{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:rgba(0,0,0,.45);
+
+backdrop-filter:blur(4px);
+
+}
+
+.book{
+
+position:relative;
+
+z-index:2;
+
+width:90%;
+
+max-width:650px;
+
+padding:40px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(12px);
+
+box-shadow:0 0 35px rgba(255,255,255,.3);
+
+text-align:center;
+
+color:white;
+
+}
+
+h1{
+
+font-family:Cinzel;
+
+font-size:50px;
+
+margin-bottom:25px;
+
+text-shadow:0 0 20px gold;
+
+}
+
+.card{
+
+display:none;
+
+animation:fade .8s;
+
+}
+
+.card.active{
+
+display:block;
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+.message{
+
+font-size:22px;
+
+line-height:1.8;
+
+margin-bottom:30px;
+
+}
+
+button{
+
+padding:15px 40px;
+
+border:none;
+
+border-radius:40px;
+
+font-size:18px;
+
+cursor:pointer;
+
+background:linear-gradient(45deg,#ff4081,#ff80ab);
+
+color:white;
+
+}
+
+.progress{
+
+margin-top:25px;
+
+height:12px;
+
+background:#ffffff33;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+.fill{
+
+height:100%;
+
+width:0;
+
+background:linear-gradient(90deg,#ff4d6d,#ffd54f);
+
+transition:.8s;
+
+}
+
+.butterfly{
+
+position:absolute;
+
+font-size:30px;
+
+animation:fly 12s linear infinite;
+
+}
+
+@keyframes fly{
+
+0%{
+
+transform:translate(-10vw,100vh);
+
+}
+
+100%{
+
+transform:translate(110vw,-20vh);
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="book">
+
+<h1>📖 Memory Book</h1>
+
+<div class="card active">
+<div class="message">
+🌹 Every page is filled with wishes for your happiness.
+</div>
+</div>
+
+<div class="card">
+<div class="message">
+✨ Your smile has the power to brighten someone's day.
+</div>
+</div>
+
+<div class="card">
+<div class="message">
+💖 May every dream you chase become a beautiful reality.
+</div>
+</div>
+
+<div class="card">
+<div class="message">
+🌸 Always remember: you are appreciated, respected, and deserving of happiness.
+</div>
+</div>
+
+<button onclick="nextPage()">Next Page ➜</button>
+
+<div class="progress">
+
+<div class="fill"></div>
+
+</div>
+
+</div>
+
+<script>
+
+const cards=document.querySelectorAll(".card");
+
+const fill=document.querySelector(".fill");
+
+let index=0;
+
+function speak(text){
+
+const msg=new SpeechSynthesisUtterance(text);
+
+msg.rate=.95;
+
+msg.pitch=1;
+
+speechSynthesis.speak(msg);
+
+}
+
+speak(cards[0].innerText);
+
+function nextPage(){
+
+cards[index].classList.remove("active");
+
+index++;
+
+if(index>=cards.length){
+
+location.href="love.html";
+
+return;
+
+}
+
+cards[index].classList.add("active");
+
+fill.style.width=((index+1)/cards.length*100)+"%";
+
+speak(cards[index].innerText);
+
+}
+
+for(let i=0;i<12;i++){
+
+const b=document.createElement("div");
+
+b.className="butterfly";
+
+b.innerHTML="🦋";
+
+b.style.left=Math.random()*100+"vw";
+
+b.style.animationDelay=Math.random()*10+"s";
+
+document.body.appendChild(b);
+
+}
+
+</script>
+
+</body>
+</html>
